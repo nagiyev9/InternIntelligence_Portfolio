@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Project</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Create New Project</h2>
+      <form method="POST" enctype="multipart/form-data">
+        <!-- Project Title -->
+        <div class="form-group">
+          <label for="title">Project Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            required
+          />
+        </div>
+
+        <!-- Project Description -->
+        <div class="form-group">
+          <label for="description">Project Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            name="description"
+            rows="3"
+            required
+            style="min-height: 100px;"
+          ></textarea>
+        </div>
+
+        <!-- Project URL -->
+        <div class="form-group">
+          <label for="url">Project URL</label>
+          <input type="url" class="form-control" id="url" name="url" required />
+        </div>
+
+        <!-- Project Image -->
+        <div class="form-group">
+          <label for="image">Project Image</label>
+          <input
+            type="file"
+            class="form-control-file"
+            id="image"
+            name="image"
+            required
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit Project</button>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('title').value;
+                const description = document.getElementById('description').value;
+                const url = document.getElementById('url').value;
+                const image = document.getElementById('image').files[0];
+                const formData = new FormData();
+                formData.append('title', title);
+                formData.append('description', description);
+                formData.append('url', url);
+                formData.append('image', image);
+                fetch('http://localhost:4545/api/project/add', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            });
+        });
+
+    </script>
+  </body>
+</html>
