@@ -5,19 +5,19 @@ const mongoose = require('mongoose');
 const ProjectSchema = mongoose.Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     description: {
         type: String,
-        require: true
+        required: true
     },
     url: {
         type: String,
-        require: true
+        required: true
     },
     image: {
         type: String,
-        require: true
+        required: true
     }
 }, {
     timestamps: true

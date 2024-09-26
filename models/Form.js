@@ -5,20 +5,20 @@ const mongoose = require('mongoose');
 const FormSchema = mongoose.Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     detail: {
         type: String,
-        require: true
+        required: true
     },
     number: {
         type: String,
-        require: true
+        required: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
-        require: true
+        required: true
     }
 }, {
     timestamps: true

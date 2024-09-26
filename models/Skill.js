@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const SkillSchema = mongoose.Schema({
     title: {
         type: String,
-        require: true
+        required: true
     }
 }, {
     timestamps: true
